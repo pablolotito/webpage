@@ -113,6 +113,7 @@
       border-radius: 50%;
       border: 4px solid rgba(255,255,255,.3);
       object-fit: cover;
+      object-position: center 70%;
       display: block;
       background: var(--navy-mid);
     }
@@ -332,51 +333,54 @@
     .stat-label { font-size: .72rem; color: var(--gray-3); margin-top: 4px; font-weight: 500; }
 
     /* ── CAROUSEL ── */
-    .carousel-card { overflow: visible; }
-    .chart-subtitle {
-      font-size: .78rem;
-      color: var(--text-lt);
-      text-align: center;
-      margin-bottom: 16px;
-      font-style: italic;
-      line-height: 1.5;
-    }
-    .carousel-slides { position: relative; }
-    .carousel-slide { display: none; }
-    .carousel-slide.active { display: block; }
-    .carousel-nav {
+    .carousel { position: relative; overflow: hidden; border-radius: 10px; }
+    .carousel-track {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 14px;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
     }
+    .carousel-slide { min-width: 100%; position: relative; }
+    .carousel-slide img {
+      width: 100%; height: 260px;
+      object-fit: contain;
+      object-position: center center;
+      display: block;
+      background: linear-gradient(180deg, #f7f9fc 0%, #eef3f8 100%);
+    }
+    .carousel-slide img.carousel-img-cover {
+      object-fit: cover;
+      object-position: center top;
+      background: transparent;
+    }
+    .carousel-caption {
+      padding: 14px 16px 10px;
+      background: var(--card);
+    }
+    .carousel-caption strong {
+      display: block; font-size: .82rem;
+      font-weight: 600; color: var(--text); margin-bottom: 3px;
+    }
+    .carousel-caption span { font-size: .75rem; color: var(--gray-3); line-height: 1.45; }
     .carousel-btn {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--navy);
-      width: 30px; height: 30px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: .95rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background .2s, border-color .2s;
-      line-height: 1;
+      position: absolute; top: 115px; transform: translateY(-50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.9); border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .15s; z-index: 10;
     }
-    .carousel-btn:hover:not(:disabled) { background: var(--gray-1); border-color: var(--blue); }
-    .carousel-btn:disabled { opacity: .3; cursor: default; }
-    .carousel-dots { display: flex; gap: 6px; align-items: center; }
-    .dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--gray-2);
-      cursor: pointer;
-      transition: background .2s;
+    .carousel-btn:hover { background: #fff; }
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+    .carousel-dots {
+      display: flex; justify-content: center; gap: 7px;
+      padding: 8px 0 4px;
     }
-    .dot.active { background: var(--blue); }
-    #dvp-chart { width: 100%; display: block; }
+    .carousel-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gray-2); border: none; padding: 0; cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+    .carousel-dot.active { background: var(--blue); transform: scale(1.3); }
 
     /* ── FOOTER ── */
     .footer {
@@ -559,6 +563,11 @@
       <div class="card-label" data-es="Publicaciones recientes" data-en="Recent Publications">Publicaciones recientes</div>
       <div class="pub-list">
         <div class="pub-item">
+          <div class="pub-authors">Scarfone, Rodríguez, Feijoo, Corrales, Lotito, Romero · 2026</div>
+          <div class="pub-title">Posterior vitreous detachment following phacoemulsification under low intraocular pressure: a population-based OCT study</div>
+          <div class="pub-journal">Graefe's Archive for Clinical and Experimental Ophthalmology — doi: 10.1007/s00417-026-07125-3</div>
+        </div>
+        <div class="pub-item">
           <div class="pub-authors">Buscaglia, Lotito, Parente, Solodov · 2025</div>
           <div class="pub-title">A General Framework for Symmetric and Asymmetric Variable Metric Proximal Point Methods, with Relations Between Relative-Errors and Summable-Errors</div>
           <div class="pub-journal">SIAM Journal on Optimization — doi: 10.1137/24M1713132</div>
@@ -582,6 +591,72 @@
     </div>
 
   </div><!-- /grid -->
+
+  <!-- ── CAROUSEL ── -->
+  <div class="card" style="margin-top:20px; padding:28px 28px 16px;">
+    <div class="card-label" data-es="Investigación en imágenes" data-en="Research in images">Investigación en imágenes</div>
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carousel-track">
+
+        <div class="carousel-slide">
+          <img src="img/traffic_network.jpg" alt="Redes de flujo de tráfico urbano">
+          <div class="carousel-caption">
+            <strong data-es="Flujo de tráfico urbano" data-en="Urban traffic flow">Flujo de tráfico urbano</strong>
+            <span data-es="Reconstrucción de la demanda de tráfico a partir de observación parcial. 
+            Comparación entre escenarios con y sin sensores (® N.Jares)." 
+            data-en="Traffic demand reconstruction from partial observations. 
+            Comparison across sensor deployment scenarios (® N. Jares).">Reconstrucción de la demanda de tráfico a partir de observación parcial. Comparación entre escenarios con y sin sensores (® N. Jares).</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/public_transport.jpg" alt="Red de transporte público de Tandil" class="carousel-img-cover">
+          <div class="carousel-caption">
+            <strong data-es="Transporte público — Tandil" data-en="Public transport — Tandil">Transporte público — Tandil</strong>
+            <span data-es="Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021." data-en="Optimization of Tandil's urban public transport system. Agreement between UNCPBA and Municipality of Tandil, 2021.">Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/azul_sim.jpg" alt="Simulación de transporte público — Azul">
+          <div class="carousel-caption">
+            <strong data-es="Transporte público — Azul" data-en="Public transport — Azul">Transporte público — Azul</strong>
+            <span data-es="Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024." data-en="Travel time distributions across optimization scenarios. Final report for the Municipality of Azul, 2024.">Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/geodata.jpg" alt="Estimación de población — Guinea">
+          <div class="carousel-caption">
+            <strong data-es="Datos geoespaciales" data-en="Geospatial data">Datos geoespaciales</strong>
+            <span data-es="Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos." data-en="Population estimation for UNICEF vaccination campaigns in Guinea, using satellite imagery and micro-census data.">Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/pvd_sankey.jpg" alt="Sankey — Evolución del DVP por edad">
+          <div class="carousel-caption">
+            <strong data-es="Oftalmología — Evolución del DVP" data-en="Ophthalmology — PVD progression">Oftalmología — Evolución del DVP</strong>
+            <span data-es="Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026." data-en="Sankey diagram of posterior vitreous detachment (PVD) progression across age groups, modelled with Markov chains. Graefe's Archive, 2026.">Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026.</span>
+          </div>
+        </div>
+
+      </div>
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Siguiente">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)"></button>
+      <button class="carousel-dot" onclick="goToSlide(3)"></button>
+      <button class="carousel-dot" onclick="goToSlide(4)"></button>
+    </div>
+  </div>
 
   <div class="footer">
     <span data-es="Universidad Nacional del Centro de la Provincia de Buenos Aires · CONICET · Tandil, Argentina"
@@ -747,12 +822,41 @@
     document.documentElement.lang = lang;
     document.getElementById('btn-es').classList.toggle('active', lang === 'es');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-
     document.querySelectorAll('[data-es]').forEach(el => {
       const val = el.getAttribute('data-' + lang);
       if (val !== null) el.innerHTML = val;
     });
   }
+
+  // ── CAROUSEL ──
+  let currentSlide = 0;
+  const totalSlides = document.querySelectorAll('#carousel-track .carousel-slide').length;
+  let autoTimer;
+
+  function updateCarousel() {
+    document.getElementById('carousel-track').style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === currentSlide));
+  }
+
+  function moveCarousel(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function goToSlide(i) {
+    currentSlide = i;
+    updateCarousel();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => moveCarousel(1), 5000);
+  }
+
+  resetAuto();
 </script>
 </body>
 </html>
