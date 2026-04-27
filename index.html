@@ -331,6 +331,53 @@
     }
     .stat-label { font-size: .72rem; color: var(--gray-3); margin-top: 4px; font-weight: 500; }
 
+    /* ── CAROUSEL ── */
+    .carousel-card { overflow: visible; }
+    .chart-subtitle {
+      font-size: .78rem;
+      color: var(--text-lt);
+      text-align: center;
+      margin-bottom: 16px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .carousel-slides { position: relative; }
+    .carousel-slide { display: none; }
+    .carousel-slide.active { display: block; }
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .carousel-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--navy);
+      width: 30px; height: 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: .95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, border-color .2s;
+      line-height: 1;
+    }
+    .carousel-btn:hover:not(:disabled) { background: var(--gray-1); border-color: var(--blue); }
+    .carousel-btn:disabled { opacity: .3; cursor: default; }
+    .carousel-dots { display: flex; gap: 6px; align-items: center; }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--gray-2);
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .dot.active { background: var(--blue); }
+    #dvp-chart { width: 100%; display: block; }
+
     /* ── FOOTER ── */
     .footer {
       text-align: center;
@@ -482,6 +529,31 @@
       </ul>
     </div>
 
+    <!-- Research Charts Carousel -->
+    <div class="card full carousel-card">
+      <div class="card-label" data-es="Visualizaciones de investigación" data-en="Research Visualizations">Visualizaciones de investigación</div>
+      <div class="carousel-slides" id="carousel-slides">
+
+        <!-- Slide 0: DVP chart -->
+        <div class="carousel-slide active" id="slide-0">
+          <p class="chart-subtitle"
+             data-es="Evolución del grado de DVP por franjas etarias (modelo de transición) — Largo Axial Normal"
+             data-en="DVP Grade Evolution by Age Group (Transition Model) — Normal Axial Length">
+            Evolución del grado de DVP por franjas etarias (modelo de transición) — Largo Axial Normal
+          </p>
+          <canvas id="dvp-chart"></canvas>
+        </div>
+
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prev-btn" disabled>&#8592;</button>
+        <div class="carousel-dots" id="carousel-dots">
+          <span class="dot active" data-idx="0"></span>
+        </div>
+        <button class="carousel-btn" id="next-btn" disabled>&#8594;</button>
+      </div>
+    </div>
+
     <!-- Publications -->
     <div class="card full">
       <div class="card-label" data-es="Publicaciones recientes" data-en="Recent Publications">Publicaciones recientes</div>
@@ -529,6 +601,144 @@
       setTimeout(() => msg.classList.remove('show'), 2200);
     });
   }
+
+  /* ── DVP CHART ── */
+  function initDVPChart() {
+    const canvas = document.getElementById('dvp-chart');
+    if (!canvas) return;
+
+    const ageGroups = ['<50', '50–54', '55–59', '60–64', '65–69', '70–74', '75–79', '80–84', '85 o más'];
+    const GRADES = 5;
+    const colors  = ['#3d87c8', '#6ab040', '#e8c020', '#e87820', '#cc3333'];
+    const bgColors = ['rgba(61,135,200,.11)', 'rgba(106,176,64,.11)', 'rgba(232,192,32,.11)', 'rgba(232,120,32,.11)', 'rgba(204,51,51,.11)'];
+
+    // props[grade][ageIndex] — sums to 1.00 per column
+    const props = [
+      [0.82, 0.62, 0.42, 0.28, 0.20, 0.16, 0.13, 0.10, 0.09],  // grade 0
+      [0.06, 0.13, 0.19, 0.21, 0.21, 0.21, 0.19, 0.17, 0.14],  // grade 1
+      [0.05, 0.10, 0.14, 0.18, 0.19, 0.19, 0.19, 0.19, 0.18],  // grade 2
+      [0.04, 0.08, 0.13, 0.16, 0.19, 0.21, 0.24, 0.24, 0.23],  // grade 3
+      [0.03, 0.07, 0.12, 0.17, 0.21, 0.23, 0.25, 0.30, 0.36],  // grade 4
+    ];
+
+    function draw() {
+      const dpr = window.devicePixelRatio || 1;
+      const W   = canvas.parentElement.clientWidth;
+      const H   = Math.round(Math.min(320, W * 0.42));
+      canvas.style.width  = W + 'px';
+      canvas.style.height = H + 'px';
+      canvas.width  = W * dpr;
+      canvas.height = H * dpr;
+
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, W, H);
+
+      const mg = { top: 30, right: 34, bottom: 6, left: 10 };
+      const cW = W - mg.left - mg.right;
+      const cH = H - mg.top - mg.bottom;
+      const nC = ageGroups.length;
+
+      const colX = i => mg.left + (i / (nC - 1)) * cW;
+
+      // stacked segments per column (grade 0 at bottom)
+      function segs(col) {
+        const out = [];
+        let cum = 0;
+        for (let g = 0; g < GRADES; g++) {
+          const h = props[g][col] * cH;
+          out.push({ yB: mg.top + cH - cum, yT: mg.top + cH - cum - h });
+          cum += h;
+        }
+        return out;
+      }
+
+      // background bands (equal height, grade 0 at bottom)
+      const bandH = cH / GRADES;
+      for (let g = 0; g < GRADES; g++) {
+        ctx.fillStyle = bgColors[g];
+        ctx.fillRect(mg.left, mg.top + (GRADES - 1 - g) * bandH, cW, bandH);
+      }
+
+      // bezier fills between columns
+      for (let col = 0; col < nC - 1; col++) {
+        const s1 = segs(col), s2 = segs(col + 1);
+        const x1 = colX(col), x2 = colX(col + 1), xm = (x1 + x2) / 2;
+        for (let g = 0; g < GRADES; g++) {
+          ctx.beginPath();
+          ctx.moveTo(x1, s1[g].yT);
+          ctx.bezierCurveTo(xm, s1[g].yT, xm, s2[g].yT, x2, s2[g].yT);
+          ctx.lineTo(x2, s2[g].yB);
+          ctx.bezierCurveTo(xm, s2[g].yB, xm, s1[g].yB, x1, s1[g].yB);
+          ctx.closePath();
+          ctx.fillStyle = colors[g] + 'b0';
+          ctx.fill();
+        }
+      }
+
+      // column bars
+      const bW = Math.max(5, Math.round(W / 110));
+      for (let col = 0; col < nC; col++) {
+        const s = segs(col), x = colX(col);
+        for (let g = 0; g < GRADES; g++) {
+          ctx.fillStyle = colors[g];
+          ctx.fillRect(x - bW / 2, s[g].yT, bW, s[g].yB - s[g].yT);
+        }
+      }
+
+      // grade labels (right of last column)
+      const last = segs(nC - 1);
+      const fs = Math.max(10, Math.round(W / 78));
+      ctx.font = `bold ${fs}px Inter, sans-serif`;
+      ctx.textAlign = 'left';
+      for (let g = 0; g < GRADES; g++) {
+        const yMid = (last[g].yT + last[g].yB) / 2;
+        if (last[g].yB - last[g].yT < 7) continue;
+        ctx.fillStyle = colors[g];
+        ctx.fillText(g, W - mg.right + 5, yMid + fs * 0.36);
+      }
+
+      // age labels (top)
+      ctx.fillStyle = '#4b5563';
+      ctx.font = `${Math.max(9, Math.round(W / 92))}px Inter, sans-serif`;
+      ctx.textAlign = 'center';
+      for (let i = 0; i < nC; i++) {
+        ctx.fillText(ageGroups[i], colX(i), mg.top - 8);
+      }
+    }
+
+    draw();
+    window.addEventListener('resize', draw);
+  }
+
+  /* ── CAROUSEL ── */
+  function initCarousel() {
+    const slides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const dots   = Array.from(document.querySelectorAll('#carousel-dots .dot'));
+    const prev   = document.getElementById('prev-btn');
+    const next   = document.getElementById('next-btn');
+    let cur = 0;
+
+    function show(idx) {
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = idx;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+      prev.disabled = cur === 0;
+      next.disabled = cur === slides.length - 1;
+    }
+
+    dots.forEach((d, i) => d.addEventListener('click', () => show(i)));
+    prev.addEventListener('click', () => { if (cur > 0) show(cur - 1); });
+    next.addEventListener('click', () => { if (cur < slides.length - 1) show(cur + 1); });
+
+    prev.disabled = true;
+    next.disabled = slides.length <= 1;
+  }
+
+  initDVPChart();
+  initCarousel();
 
   let currentLang = 'es';
 
