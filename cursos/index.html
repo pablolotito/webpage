@@ -18,6 +18,38 @@
   <meta property="og:image" content="https://pablolotito.github.io/webpage/foto.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD: CollectionPage de cursos, vinculada a la Person definida en la home -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://pablolotito.github.io/webpage/cursos/#page",
+    "url": "https://pablolotito.github.io/webpage/cursos/",
+    "name": "Cursos dictados — Pablo A. Lotito",
+    "description": "Cursos y actividades docentes dictadas por Pablo A. Lotito en matemática aplicada, optimización, modelización y matemática computacional.",
+    "inLanguage": ["es", "en"],
+    "isPartOf": { "@id": "https://pablolotito.github.io/webpage/#website" },
+    "about": { "@id": "https://pablolotito.github.io/webpage/#person" },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Cursos dictados",
+      "itemListElement": [
+        { "@type": "Course", "name": "Optimización para Machine Learning",      "provider": { "@type": "CollegeOrUniversity", "name": "ITBA" } },
+        { "@type": "Course", "name": "Algoritmos Avanzados y Estructura de Datos", "provider": { "@type": "Organization", "name": "DMCI — UNCPBA" } },
+        { "@type": "Course", "name": "Modelización Matemática",                  "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Ciencias Exactas, UNCPBA" } },
+        { "@type": "Course", "name": "Probabilidad y Estadística",               "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Ciencias Exactas, UNCPBA" } },
+        { "@type": "Course", "name": "Introducción a la Ciencia de Datos para profesionales de la Salud", "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Cs. de la Salud, UNCPBA" } },
+        { "@type": "Course", "name": "Topología",                                "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Ciencias Exactas, UNCPBA" } },
+        { "@type": "Course", "name": "Análisis Matemático IV (Análisis Funcional)", "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Ciencias Exactas, UNCPBA" } },
+        { "@type": "Course", "name": "Geometría y Álgebra Lineal",               "provider": { "@type": "CollegeOrUniversity", "name": "Facultad de Ciencias Exactas, UNCPBA" } },
+        { "@type": "Course", "name": "Fundamentos de Optimización",              "provider": { "@type": "Organization", "name": "DMCI — UNCPBA" } },
+        { "@type": "Course", "name": "Optimización Convexa No Diferenciable",    "provider": { "@type": "Organization", "name": "DMCI — UNCPBA" } }
+      ]
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
