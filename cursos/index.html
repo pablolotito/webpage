@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursos dictados — Pablo A. Lotito</title>
+  <meta name="description" content="Cursos y actividades docentes dictadas por Pablo A. Lotito en matemática aplicada, optimización, modelización y matemática computacional.">
+  <meta name="author" content="Pablo A. Lotito">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://pablolotito.github.io/webpage/cursos/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:title" content="Cursos dictados — Pablo A. Lotito">
+  <meta property="og:description" content="Cursos y actividades docentes en matemática aplicada, optimización, modelización y matemática computacional.">
+  <meta property="og:url" content="https://pablolotito.github.io/webpage/cursos/">
+  <meta property="og:image" content="https://pablolotito.github.io/webpage/foto.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #1b2d4f;
+      --navy-mid:  #243d6a;
+      --blue:      #2e72b8;
+      --accent:    #5ba4cf;
+      --bg:        #f4f6f9;
+      --card:      #ffffff;
+      --gray-1:    #e8ecf2;
+      --gray-2:    #b0bac8;
+      --gray-3:    #6b778d;
+      --text:      #1f2937;
+      --text-lt:   #4b5563;
+      --tag-bg:    #dbeafe;
+      --tag-text:  #1e4a7a;
+      --border:    #d1d9e6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── LANG TOGGLE ── */
+    .lang-bar {
+      position: fixed;
+      top: 16px; right: 20px;
+      z-index: 100;
+      display: flex;
+      gap: 2px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+    }
+    .lang-bar button {
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--gray-3);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .lang-bar button.active {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 48px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--navy);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 62%, #1e4d8c 100%);
+      border-radius: 20px;
+      padding: 44px 46px 40px;
+      color: #fff;
+      box-shadow: 0 8px 32px rgba(27,45,79,.35);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -70px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+
+    .hero-label {
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      max-width: 720px;
+      color: rgba(255,255,255,.84);
+      font-size: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-hint {
+      margin-top: 12px;
+      font-size: .82rem;
+      color: rgba(255,255,255,.7);
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 28px 30px;
+      border: 1px solid var(--gray-1);
+      box-shadow: 0 2px 12px rgba(27,45,79,.06);
+    }
+
+    .year-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 6px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gray-1);
+    }
+
+    .year-header h2 {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 1.7rem;
+      color: var(--navy);
+      letter-spacing: -.02em;
+    }
+
+    .year-header .year-tag {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      padding: 4px 10px;
+      background: var(--tag-bg);
+      border-radius: 999px;
+    }
+
+    .institution-block { margin-top: 20px; }
+    .institution-block:first-of-type { margin-top: 16px; }
+
+    .institution-name {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--text-lt);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+      padding-left: 12px;
+      border-left: 3px solid var(--accent);
+    }
+
+    /* ---- Curso colapsado ---- */
+    .course {
+      background: var(--bg);
+      border-left: 3px solid var(--blue);
+      border-radius: 10px;
+      padding: 12px 36px 12px 18px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background .25s ease, box-shadow .25s ease;
+      position: relative;
+      outline: none;
+    }
+
+    .course:last-child { margin-bottom: 0; }
+
+    .course:hover,
+    .course:focus-visible {
+      background: #eaf1fa;
+      box-shadow: 0 2px 10px rgba(27,45,79,.08);
+    }
+
+    .course-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .course-header-text {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .course-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+
+    .course-meta {
+      font-size: .82rem;
+      color: var(--text-lt);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    .course-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: .68rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Indicador "+" en la esquina superior derecha */
+    .course::after {
+      content: '+';
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gray-2);
+      transition: transform .25s ease, color .25s ease;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .course:hover::after,
+    .course:focus-visible::after,
+    .course.is-active::after {
+      transform: rotate(45deg);
+      color: var(--blue);
+    }
+
+    /* Cuerpo expandible */
+    .course-body {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .35s ease, opacity .25s ease, margin-top .25s ease;
+      margin-top: 0;
+    }
+
+    .course:hover .course-body,
+    .course:focus-visible .course-body,
+    .course.is-active .course-body {
+      max-height: 1400px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+
+    .course-body ul { list-style: none; padding-left: 0; }
+
+    .course-body li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 4px;
+      color: var(--text-lt);
+      font-size: .86rem;
+    }
+
+    .course-body li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--blue);
+      font-size: .8rem;
+    }
+
+    .course-ref {
+      font-size: .82rem;
+      color: var(--gray-3);
+      font-style: italic;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      color: var(--gray-3);
+      font-size: .78rem;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding: 36px 26px 32px; }
+      .card { padding: 22px 20px; }
+      .year-header { flex-direction: column; gap: 8px; align-items: flex-start; }
+      .year-header h2 { font-size: 1.4rem; }
+      .course-tags { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language toggle -->
+  <div class="lang-bar">
+    <button class="active" onclick="setLang('es')" id="btn-es">ES</button>
+    <button onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+
+  <main class="container">
+    <a class="back-link" href="../index.html"
+       data-es="← Volver al sitio principal"
+       data-en="← Back to main site">← Volver al sitio principal</a>
+
+    <section class="hero">
+      <div class="hero-label"
+           data-es="Docencia universitaria"
+           data-en="University teaching">Docencia universitaria</div>
+      <h1 data-es="Cursos dictados" data-en="Courses taught">Cursos dictados</h1>
+      <p data-es="Selección de cursos, seminarios y actividades docentes vinculadas con matemática aplicada, optimización, modelización de sistemas y matemática computacional e industrial."
+         data-en="Selected courses, seminars and teaching activities related to applied mathematics, optimization, system modeling and computational and industrial mathematics.">
+        Selección de cursos, seminarios y actividades docentes vinculadas con matemática aplicada,
+        optimización, modelización de sistemas y matemática computacional e industrial.
+      </p>
+      <p class="hero-hint"
+         data-es="Pasá el cursor sobre cada curso (o tocá, en mobile) para ver los contenidos."
+         data-en="Hover over each course (or tap on mobile) to see the contents.">Pasá el cursor sobre cada curso (o tocá, en mobile) para ver los contenidos.</p>
+    </section>
+
+    <section class="grid">
+
+      <!-- ============ 2026 ============ -->
+      <div class="card">
+        <div class="year-header">
+          <h2>2026</h2>
+          <span class="year-tag" data-es="En curso" data-en="Ongoing">En curso</span>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="ITBA · Curso intensivo de doctorado (abril)"
+               data-en="ITBA · Intensive PhD course (April)">ITBA · Curso intensivo de doctorado (abril)</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Optimización para Machine Learning"
+                     data-en="Optimization for Machine Learning">Optimización para Machine Learning</div>
+                <div class="course-meta"
+                     data-es="Curso intensivo de nivel doctorado"
+                     data-en="Intensive PhD-level course">Curso intensivo de nivel doctorado</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Doctorado" data-en="PhD">Doctorado</span>
+                <span class="tag" data-es="Optimización" data-en="Optimization">Optimización</span>
+                <span class="tag">ML</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Optimización matemática, nociones básicas (problemas convexos y no convexos, condiciones de optimalidad, dualidad)."
+                    data-en="Mathematical optimization, basic notions (convex and non-convex problems, optimality conditions, duality).">Optimización matemática, nociones básicas (problemas convexos y no convexos, condiciones de optimalidad, dualidad).</li>
+                <li data-es="Clasificación no supervisada (clustering con métodos espectrales) y clasificación supervisada (SVM y regresión logística)."
+                    data-en="Unsupervised classification (clustering with spectral methods) and supervised classification (SVM and logistic regression).">Clasificación no supervisada (clustering con métodos espectrales) y clasificación supervisada (SVM y regresión logística).</li>
+                <li data-es="Redes neuronales artificiales, deep learning y redes convolucionales."
+                    data-en="Artificial neural networks, deep learning and convolutional networks.">Redes neuronales artificiales, deep learning y redes convolucionales.</li>
+                <li data-es="Métodos de descenso (gradiente estocástico, ADAM, ADAGRAD, momentum, RMSProp, etc.)."
+                    data-en="Descent methods (stochastic gradient, ADAM, ADAGRAD, momentum, RMSProp, etc.).">Métodos de descenso (gradiente estocástico, ADAM, ADAGRAD, momentum, RMSProp, etc.).</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="DMCI · Doctorado en Matemática Computacional e Industrial"
+               data-en="DMCI · PhD in Computational and Industrial Mathematics">DMCI · Doctorado en Matemática Computacional e Industrial</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Algoritmos Avanzados y Estructura de Datos"
+                     data-en="Advanced Algorithms and Data Structures">Algoritmos Avanzados y Estructura de Datos</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Doctorado" data-en="PhD">Doctorado</span>
+                <span class="tag">DMCI</span>
+                <span class="tag" data-es="Algoritmos" data-en="Algorithms">Algoritmos</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Análisis de complejidad algorítmica (notación asintótica, análisis amortizado)."
+                    data-en="Algorithmic complexity analysis (asymptotic notation, amortized analysis).">Análisis de complejidad algorítmica (notación asintótica, análisis amortizado).</li>
+                <li data-es="Estructuras de datos avanzadas: árboles balanceados (AVL, Rojo-Negro), árboles B, heaps, tablas hash, grafos."
+                    data-en="Advanced data structures: balanced trees (AVL, Red-Black), B-trees, heaps, hash tables, graphs.">Estructuras de datos avanzadas: árboles balanceados (AVL, Rojo-Negro), árboles B, heaps, tablas hash, grafos.</li>
+                <li data-es="Algoritmos de grafos: BFS, DFS, caminos mínimos (Dijkstra, Bellman-Ford, Floyd-Warshall), árboles generadores mínimos, flujo en redes."
+                    data-en="Graph algorithms: BFS, DFS, shortest paths (Dijkstra, Bellman-Ford, Floyd-Warshall), minimum spanning trees, network flow.">Algoritmos de grafos: BFS, DFS, caminos mínimos (Dijkstra, Bellman-Ford, Floyd-Warshall), árboles generadores mínimos, flujo en redes.</li>
+                <li data-es="Programación dinámica y algoritmos voraces."
+                    data-en="Dynamic programming and greedy algorithms.">Programación dinámica y algoritmos voraces.</li>
+                <li data-es="Técnicas de divide y vencerás."
+                    data-en="Divide-and-conquer techniques.">Técnicas de divide y vencerás.</li>
+                <li data-es="Introducción a la complejidad computacional: P, NP, NP-completitud."
+                    data-en="Introduction to computational complexity: P, NP, NP-completeness.">Introducción a la complejidad computacional: P, NP, NP-completitud.</li>
+                <li data-es="Algoritmos de aproximación y algoritmos aleatorizados."
+                    data-en="Approximation algorithms and randomized algorithms.">Algoritmos de aproximación y algoritmos aleatorizados.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA (2º cuatrimestre)"
+               data-en="BSc in Mathematics · School of Exact Sciences, UNCPBA (2nd semester)">Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA (2º cuatrimestre)</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Modelización Matemática"
+                     data-en="Mathematical Modeling">Modelización Matemática</div>
+                <div class="course-meta"
+                     data-es="Junto con la Dra. M. Victoria Orlando"
+                     data-en="With Dr. M. Victoria Orlando">Junto con la Dra. M. Victoria Orlando</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+                <span class="tag" data-es="Modelización" data-en="Modeling">Modelización</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Introducción a la modelización: tipos de modelos (deterministas, estocásticos, discretos, continuos) y proceso de modelización."
+                    data-en="Introduction to modeling: types of models (deterministic, stochastic, discrete, continuous) and the modeling process.">Introducción a la modelización: tipos de modelos (deterministas, estocásticos, discretos, continuos) y proceso de modelización.</li>
+                <li data-es="Modelos basados en ecuaciones diferenciales ordinarias (dinámica poblacional, epidemiología, mecánica)."
+                    data-en="Models based on ordinary differential equations (population dynamics, epidemiology, mechanics).">Modelos basados en ecuaciones diferenciales ordinarias (dinámica poblacional, epidemiología, mecánica).</li>
+                <li data-es="Modelos en tiempo discreto: ecuaciones en diferencias y sistemas dinámicos discretos."
+                    data-en="Discrete-time models: difference equations and discrete dynamical systems.">Modelos en tiempo discreto: ecuaciones en diferencias y sistemas dinámicos discretos.</li>
+                <li data-es="Introducción a modelos de optimización (programación lineal y no lineal aplicada)."
+                    data-en="Introduction to optimization models (applied linear and nonlinear programming).">Introducción a modelos de optimización (programación lineal y no lineal aplicada).</li>
+                <li data-es="Modelos basados en grafos y redes."
+                    data-en="Graph- and network-based models.">Modelos basados en grafos y redes.</li>
+                <li data-es="Análisis de sensibilidad y validación de modelos."
+                    data-en="Sensitivity analysis and model validation.">Análisis de sensibilidad y validación de modelos.</li>
+                <li data-es="Implementación computacional de los modelos (Python/Julia/Matlab)."
+                    data-en="Computational implementation of models (Python/Julia/Matlab).">Implementación computacional de los modelos (Python/Julia/Matlab).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Probabilidad y Estadística"
+                     data-en="Probability and Statistics">Probabilidad y Estadística</div>
+                <div class="course-meta"
+                     data-es="Junto con el Dr. Maximiliano Riddick"
+                     data-en="With Dr. Maximiliano Riddick">Junto con el Dr. Maximiliano Riddick</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+                <span class="tag" data-es="Estadística" data-en="Statistics">Estadística</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Espacios de probabilidad, axiomas, probabilidad condicional e independencia."
+                    data-en="Probability spaces, axioms, conditional probability and independence.">Espacios de probabilidad, axiomas, probabilidad condicional e independencia.</li>
+                <li data-es="Variables aleatorias discretas y continuas. Distribuciones notables."
+                    data-en="Discrete and continuous random variables. Notable distributions.">Variables aleatorias discretas y continuas. Distribuciones notables.</li>
+                <li data-es="Vectores aleatorios, distribuciones conjuntas, marginales y condicionales."
+                    data-en="Random vectors, joint, marginal and conditional distributions.">Vectores aleatorios, distribuciones conjuntas, marginales y condicionales.</li>
+                <li data-es="Esperanza, varianza, momentos y funciones generadoras."
+                    data-en="Expectation, variance, moments and generating functions.">Esperanza, varianza, momentos y funciones generadoras.</li>
+                <li data-es="Convergencia de variables aleatorias. Ley de los Grandes Números y Teorema Central del Límite."
+                    data-en="Convergence of random variables. Law of Large Numbers and Central Limit Theorem.">Convergencia de variables aleatorias. Ley de los Grandes Números y Teorema Central del Límite.</li>
+                <li data-es="Estadística descriptiva y exploratoria."
+                    data-en="Descriptive and exploratory statistics.">Estadística descriptiva y exploratoria.</li>
+                <li data-es="Estimación puntual (máxima verosimilitud, momentos) y por intervalos."
+                    data-en="Point estimation (maximum likelihood, moments) and interval estimation.">Estimación puntual (máxima verosimilitud, momentos) y por intervalos.</li>
+                <li data-es="Pruebas de hipótesis paramétricas y no paramétricas."
+                    data-en="Parametric and non-parametric hypothesis testing.">Pruebas de hipótesis paramétricas y no paramétricas.</li>
+                <li data-es="Regresión lineal simple y múltiple."
+                    data-en="Simple and multiple linear regression.">Regresión lineal simple y múltiple.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ 2025 ============ -->
+      <div class="card">
+        <div class="year-header">
+          <h2>2025</h2>
+          <span class="year-tag" data-es="Reciente" data-en="Recent">Reciente</span>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA"
+               data-en="BSc in Mathematics · School of Exact Sciences, UNCPBA">Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Modelización Matemática"
+                     data-en="Mathematical Modeling">Modelización Matemática</div>
+                <div class="course-meta"
+                     data-es="Junto con la Dra. M. Victoria Orlando"
+                     data-en="With Dr. M. Victoria Orlando">Junto con la Dra. M. Victoria Orlando</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <p class="course-ref"
+                 data-es="Contenidos detallados en el dictado de 2026."
+                 data-en="Detailed contents in the 2026 edition.">Contenidos detallados en el dictado de 2026.</p>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Probabilidad y Estadística"
+                     data-en="Probability and Statistics">Probabilidad y Estadística</div>
+                <div class="course-meta"
+                     data-es="Junto con el Dr. Maximiliano Riddick"
+                     data-en="With Dr. Maximiliano Riddick">Junto con el Dr. Maximiliano Riddick</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <p class="course-ref"
+                 data-es="Contenidos detallados en el dictado de 2026."
+                 data-en="Detailed contents in the 2026 edition.">Contenidos detallados en el dictado de 2026.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="Facultad de Cs. de la Salud · UNCPBA · Posgrado"
+               data-en="School of Health Sciences · UNCPBA · Graduate program">Facultad de Cs. de la Salud · UNCPBA · Posgrado</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Introducción a la Ciencia de Datos para profesionales de la Salud"
+                     data-en="Introduction to Data Science for Health Professionals">Introducción a la Ciencia de Datos para profesionales de la Salud</div>
+                <div class="course-meta"
+                     data-es="Junto con el Dr. M. Riddick y la Dra. M. del C. Romero"
+                     data-en="With Dr. M. Riddick and Dr. M. del C. Romero">Junto con el Dr. M. Riddick y la Dra. M. del C. Romero</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Posgrado" data-en="Graduate">Posgrado</span>
+                <span class="tag" data-es="Salud" data-en="Health">Salud</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Introducción a la ciencia de datos y su aplicación en el ámbito sanitario."
+                    data-en="Introduction to data science and its application in the healthcare setting.">Introducción a la ciencia de datos y su aplicación en el ámbito sanitario.</li>
+                <li data-es="Manejo y exploración de datos clínicos y epidemiológicos."
+                    data-en="Handling and exploration of clinical and epidemiological data.">Manejo y exploración de datos clínicos y epidemiológicos.</li>
+                <li data-es="Estadística descriptiva e inferencial aplicada a datos de salud."
+                    data-en="Descriptive and inferential statistics applied to health data.">Estadística descriptiva e inferencial aplicada a datos de salud.</li>
+                <li data-es="Visualización de datos para profesionales de la salud."
+                    data-en="Data visualization for health professionals.">Visualización de datos para profesionales de la salud.</li>
+                <li data-es="Introducción al aprendizaje automático supervisado y no supervisado."
+                    data-en="Introduction to supervised and unsupervised machine learning.">Introducción al aprendizaje automático supervisado y no supervisado.</li>
+                <li data-es="Modelos predictivos en salud (regresión logística, árboles de decisión, clasificadores básicos)."
+                    data-en="Predictive models in health (logistic regression, decision trees, basic classifiers).">Modelos predictivos en salud (regresión logística, árboles de decisión, clasificadores básicos).</li>
+                <li data-es="Análisis de supervivencia y modelos longitudinales."
+                    data-en="Survival analysis and longitudinal models.">Análisis de supervivencia y modelos longitudinales.</li>
+                <li data-es="Aspectos éticos, de privacidad y reproducibilidad en el manejo de datos clínicos."
+                    data-en="Ethical, privacy and reproducibility aspects of handling clinical data.">Aspectos éticos, de privacidad y reproducibilidad en el manejo de datos clínicos.</li>
+                <li data-es="Herramientas computacionales (R/Python) aplicadas a casos de estudio en salud."
+                    data-en="Computational tools (R/Python) applied to health case studies.">Herramientas computacionales (R/Python) aplicadas a casos de estudio en salud.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============ ANTERIORES ============ -->
+      <div class="card">
+        <div class="year-header">
+          <h2 data-es="Anteriores" data-en="Previous">Anteriores</h2>
+          <span class="year-tag" data-es="Histórico" data-en="Archive">Histórico</span>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA"
+               data-en="BSc in Mathematics · School of Exact Sciences, UNCPBA">Lic. en Matemática · Facultad de Cs. Exactas, UNCPBA</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Modelización Matemática"
+                     data-en="Mathematical Modeling">Modelización Matemática</div>
+                <div class="course-meta"
+                     data-es="Junto con la Dra. M. Victoria Orlando"
+                     data-en="With Dr. M. Victoria Orlando">Junto con la Dra. M. Victoria Orlando</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <p class="course-ref"
+                 data-es="Contenidos detallados en el dictado de 2026."
+                 data-en="Detailed contents in the 2026 edition.">Contenidos detallados en el dictado de 2026.</p>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Topología"
+                     data-en="Topology">Topología</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+                <span class="tag" data-es="Topología" data-en="Topology">Topología</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Espacios métricos: definiciones, ejemplos, sucesiones y completitud."
+                    data-en="Metric spaces: definitions, examples, sequences and completeness.">Espacios métricos: definiciones, ejemplos, sucesiones y completitud.</li>
+                <li data-es="Espacios topológicos: bases, subbases, topologías comparables."
+                    data-en="Topological spaces: bases, subbases, comparable topologies.">Espacios topológicos: bases, subbases, topologías comparables.</li>
+                <li data-es="Continuidad, homeomorfismos."
+                    data-en="Continuity, homeomorphisms.">Continuidad, homeomorfismos.</li>
+                <li data-es="Conexión y conexión por caminos."
+                    data-en="Connectedness and path-connectedness.">Conexión y conexión por caminos.</li>
+                <li data-es="Compacidad: caracterizaciones, teorema de Heine-Borel, teorema de Tychonoff."
+                    data-en="Compactness: characterizations, Heine-Borel theorem, Tychonoff theorem.">Compacidad: caracterizaciones, teorema de Heine-Borel, teorema de Tychonoff.</li>
+                <li data-es="Axiomas de separación (T0, T1, T2, regularidad, normalidad)."
+                    data-en="Separation axioms (T0, T1, T2, regularity, normality).">Axiomas de separación (T0, T1, T2, regularidad, normalidad).</li>
+                <li data-es="Espacios productos y cocientes."
+                    data-en="Product and quotient spaces.">Espacios productos y cocientes.</li>
+                <li data-es="Introducción a la topología algebraica (grupo fundamental)."
+                    data-en="Introduction to algebraic topology (fundamental group).">Introducción a la topología algebraica (grupo fundamental).</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Análisis Matemático IV (Análisis Funcional)"
+                     data-en="Mathematical Analysis IV (Functional Analysis)">Análisis Matemático IV (Análisis Funcional)</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+                <span class="tag" data-es="Análisis Funcional" data-en="Functional Analysis">Análisis Funcional</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Espacios métricos y espacios normados. Completitud. Espacios de Banach."
+                    data-en="Metric and normed spaces. Completeness. Banach spaces.">Espacios métricos y espacios normados. Completitud. Espacios de Banach.</li>
+                <li data-es="Espacios con producto interno. Espacios de Hilbert. Ortogonalidad y bases ortonormales."
+                    data-en="Inner product spaces. Hilbert spaces. Orthogonality and orthonormal bases.">Espacios con producto interno. Espacios de Hilbert. Ortogonalidad y bases ortonormales.</li>
+                <li data-es="Operadores lineales acotados. Norma de operadores. Espacios de operadores."
+                    data-en="Bounded linear operators. Operator norm. Operator spaces.">Operadores lineales acotados. Norma de operadores. Espacios de operadores.</li>
+                <li data-es="Teorema de Hahn-Banach y sus consecuencias."
+                    data-en="Hahn-Banach theorem and its consequences.">Teorema de Hahn-Banach y sus consecuencias.</li>
+                <li data-es="Teorema de Banach-Steinhaus (principio de acotación uniforme)."
+                    data-en="Banach-Steinhaus theorem (uniform boundedness principle).">Teorema de Banach-Steinhaus (principio de acotación uniforme).</li>
+                <li data-es="Teorema de la aplicación abierta y teorema del gráfico cerrado."
+                    data-en="Open mapping theorem and closed graph theorem.">Teorema de la aplicación abierta y teorema del gráfico cerrado.</li>
+                <li data-es="Espacios duales. Topologías débil y débil-*. Teorema de Banach-Alaoglu."
+                    data-en="Dual spaces. Weak and weak-* topologies. Banach-Alaoglu theorem.">Espacios duales. Topologías débil y débil-*. Teorema de Banach-Alaoglu.</li>
+                <li data-es="Operadores compactos y teoría espectral de operadores compactos autoadjuntos."
+                    data-en="Compact operators and spectral theory of self-adjoint compact operators.">Operadores compactos y teoría espectral de operadores compactos autoadjuntos.</li>
+                <li data-es="Espacios L^p y sus propiedades."
+                    data-en="L^p spaces and their properties.">Espacios L^p y sus propiedades.</li>
+                <li data-es="Series de Fourier en espacios de Hilbert. Transformada de Fourier."
+                    data-en="Fourier series in Hilbert spaces. Fourier transform.">Series de Fourier en espacios de Hilbert. Transformada de Fourier.</li>
+                <li data-es="Aplicaciones a ecuaciones integrales y diferenciales."
+                    data-en="Applications to integral and differential equations.">Aplicaciones a ecuaciones integrales y diferenciales.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Geometría y Álgebra Lineal"
+                     data-en="Geometry and Linear Algebra">Geometría y Álgebra Lineal</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Grado" data-en="Undergraduate">Grado</span>
+                <span class="tag" data-es="Álgebra Lineal" data-en="Linear Algebra">Álgebra Lineal</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Vectores en R² y R³, geometría analítica."
+                    data-en="Vectors in R² and R³, analytic geometry.">Vectores en R² y R³, geometría analítica.</li>
+                <li data-es="Rectas y planos en el espacio."
+                    data-en="Lines and planes in space.">Rectas y planos en el espacio.</li>
+                <li data-es="Sistemas de ecuaciones lineales y método de Gauss."
+                    data-en="Systems of linear equations and Gaussian elimination.">Sistemas de ecuaciones lineales y método de Gauss.</li>
+                <li data-es="Matrices, determinantes y sus propiedades."
+                    data-en="Matrices, determinants and their properties.">Matrices, determinantes y sus propiedades.</li>
+                <li data-es="Espacios vectoriales: bases, dimensión, subespacios."
+                    data-en="Vector spaces: bases, dimension, subspaces.">Espacios vectoriales: bases, dimensión, subespacios.</li>
+                <li data-es="Transformaciones lineales y matrices asociadas."
+                    data-en="Linear transformations and associated matrices.">Transformaciones lineales y matrices asociadas.</li>
+                <li data-es="Autovalores y autovectores. Diagonalización."
+                    data-en="Eigenvalues and eigenvectors. Diagonalization.">Autovalores y autovectores. Diagonalización.</li>
+                <li data-es="Espacios con producto interno. Ortogonalidad."
+                    data-en="Inner product spaces. Orthogonality.">Espacios con producto interno. Ortogonalidad.</li>
+                <li data-es="Cónicas y cuádricas."
+                    data-en="Conics and quadrics.">Cónicas y cuádricas.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="institution-block">
+          <div class="institution-name"
+               data-es="DMCI · Doctorado en Matemática Computacional e Industrial"
+               data-en="DMCI · PhD in Computational and Industrial Mathematics">DMCI · Doctorado en Matemática Computacional e Industrial</div>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Fundamentos de Optimización"
+                     data-en="Foundations of Optimization">Fundamentos de Optimización</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Doctorado" data-en="PhD">Doctorado</span>
+                <span class="tag" data-es="Optimización" data-en="Optimization">Optimización</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Problemas de optimización: formulación y clasificación."
+                    data-en="Optimization problems: formulation and classification.">Problemas de optimización: formulación y clasificación.</li>
+                <li data-es="Optimización sin restricciones: condiciones de optimalidad, métodos de descenso (gradiente, Newton, cuasi-Newton)."
+                    data-en="Unconstrained optimization: optimality conditions, descent methods (gradient, Newton, quasi-Newton).">Optimización sin restricciones: condiciones de optimalidad, métodos de descenso (gradiente, Newton, cuasi-Newton).</li>
+                <li data-es="Optimización con restricciones: multiplicadores de Lagrange, condiciones KKT."
+                    data-en="Constrained optimization: Lagrange multipliers, KKT conditions.">Optimización con restricciones: multiplicadores de Lagrange, condiciones KKT.</li>
+                <li data-es="Programación lineal: método símplex y dualidad."
+                    data-en="Linear programming: simplex method and duality.">Programación lineal: método símplex y dualidad.</li>
+                <li data-es="Programación no lineal: métodos de penalización y barrera."
+                    data-en="Nonlinear programming: penalty and barrier methods.">Programación no lineal: métodos de penalización y barrera.</li>
+                <li data-es="Introducción a la optimización convexa."
+                    data-en="Introduction to convex optimization.">Introducción a la optimización convexa.</li>
+                <li data-es="Aplicaciones e implementación computacional."
+                    data-en="Applications and computational implementation.">Aplicaciones e implementación computacional.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Optimización Convexa No Diferenciable"
+                     data-en="Non-smooth Convex Optimization">Optimización Convexa No Diferenciable</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Doctorado" data-en="PhD">Doctorado</span>
+                <span class="tag" data-es="Análisis convexo" data-en="Convex Analysis">Análisis convexo</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul>
+                <li data-es="Análisis convexo: conjuntos convexos, funciones convexas, propiedades."
+                    data-en="Convex analysis: convex sets, convex functions, properties.">Análisis convexo: conjuntos convexos, funciones convexas, propiedades.</li>
+                <li data-es="Subdiferencial y subgradientes."
+                    data-en="Subdifferential and subgradients.">Subdiferencial y subgradientes.</li>
+                <li data-es="Conjugada de Fenchel y dualidad convexa."
+                    data-en="Fenchel conjugate and convex duality.">Conjugada de Fenchel y dualidad convexa.</li>
+                <li data-es="Método del subgradiente y métodos de plano de corte."
+                    data-en="Subgradient method and cutting-plane methods.">Método del subgradiente y métodos de plano de corte.</li>
+                <li data-es="Métodos de haces (bundle methods)."
+                    data-en="Bundle methods.">Métodos de haces (bundle methods).</li>
+                <li data-es="Operadores proximales y métodos de punto proximal."
+                    data-en="Proximal operators and proximal point methods.">Operadores proximales y métodos de punto proximal.</li>
+                <li data-es="Métodos de descomposición (splitting): Douglas-Rachford, ADMM."
+                    data-en="Splitting methods: Douglas-Rachford, ADMM.">Métodos de descomposición (splitting): Douglas-Rachford, ADMM.</li>
+                <li data-es="Aplicaciones a problemas de gran escala y machine learning."
+                    data-en="Applications to large-scale problems and machine learning.">Aplicaciones a problemas de gran escala y machine learning.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="course" tabindex="0">
+            <div class="course-header">
+              <div class="course-header-text">
+                <div class="course-title"
+                     data-es="Algoritmos Avanzados y Estructura de Datos"
+                     data-en="Advanced Algorithms and Data Structures">Algoritmos Avanzados y Estructura de Datos</div>
+              </div>
+              <div class="course-tags">
+                <span class="tag" data-es="Doctorado" data-en="PhD">Doctorado</span>
+                <span class="tag">DMCI</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <p class="course-ref"
+                 data-es="Contenidos detallados en el dictado de 2026."
+                 data-en="Detailed contents in the 2026 edition.">Contenidos detallados en el dictado de 2026.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      <span data-es="Pablo A. Lotito · Facultad de Ciencias Exactas, UNCPBA · CONICET"
+            data-en="Pablo A. Lotito · School of Exact Sciences, UNCPBA · CONICET">Pablo A. Lotito · Facultad de Ciencias Exactas, UNCPBA · CONICET</span>
+    </footer>
+  </main>
+
+  <script>
+    // Toggle al tocar/clic (mobile y como alternativa al hover)
+    document.querySelectorAll('.course').forEach(course => {
+      course.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        course.classList.toggle('is-active');
+      });
+      course.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          course.classList.toggle('is-active');
+        }
+      });
+    });
+
+    // ── Idioma ──
+    const STORAGE_KEY = 'site-lang';
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('[data-es]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val !== null) el.innerHTML = val;
+      });
+      document.title = (lang === 'en')
+        ? 'Courses taught — Pablo A. Lotito'
+        : 'Cursos dictados — Pablo A. Lotito';
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    }
+
+    // Recuperar preferencia persistida (compartida con la página principal)
+    (function initLang() {
+      let lang = 'es';
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === 'es' || stored === 'en') lang = stored;
+      } catch (e) {}
+      setLang(lang);
+    })();
+  </script>
+</body>
+</html>
