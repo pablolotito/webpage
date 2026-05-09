@@ -594,14 +594,15 @@
       <ul class="role-list">
         <li class="role-item">
           <div class="role-dot"></div>
-          <div class="role-text" data-es="<strong>Investigador Independiente</strong> — CONICET, laboratorio PLADEMA, UNCPBA" data-en="<strong>Independent Researcher</strong> — CONICET, PLADEMA lab, UNCPBA">
-            <strong>Investigador Independiente</strong> — CONICET, laboratorio PLADEMA — Facultad de Ciencias Exactas, UNCPBA.
+          <div class="role-text" data-es="<strong>Investigador Independiente</strong> — CONICET, laboratorio <a href='https://www.pladema.net' target='_blank' rel='noopener'>PLADEMA</a> — Facultad de Ciencias Exactas, UNCPBA" data-en="<strong>Independent Researcher</strong> — CONICET, <a href='https://www.pladema.net' target='_blank' rel='noopener'>PLADEMA</a> lab — Facultad de Ciencias Exactas, UNCPBA">
+            <strong>Investigador Independiente</strong> — CONICET, laboratorio <a href='https://www.pladema.net' target='_blank' rel='noopener'>PLADEMA</a> — Facultad de Ciencias Exactas, UNCPBA.
           </div>
         </li>
         <li class="role-item">
           <div class="role-dot"></div>
-          <div class="role-text" data-es="<strong>Profesor Titular Cat. I</strong> — Facultad de Ciencias Exactas, UNCPBA" data-en="<strong>Full Professor Cat. I</strong> — School of Exact Sciences, UNCPBA">
-            <strong>Profesor Titular Cat. I</strong> — Facultad de Ciencias Exactas, UNCPBA.
+          <div class="role-text" data-es="<strong>Profesor Titular Cat. I</strong> — Facultad de Ciencias Exactas, UNCPBA <a href='cursos/index.html' style='margin-left:6px;font-size:90%'>[cursos]</a>" data-en="<strong>Full Professor Cat. I</strong> — School of Exact Sciences, UNCPBA <a href='cursos/index.html' style='margin-left:6px;font-size:90%'>[courses taught]</a>">
+            <strong>Profesor Titular Cat. I</strong> — Facultad de Ciencias Exactas, UNCPBA. 
+            <a href="cursos/index.html" style="margin-left:6px;font-size:90%">[cursos]</a>
           </div>
         </li>
         <li class="role-item">
@@ -684,6 +685,7 @@
   }
 
   let currentLang = 'es';
+  const LANG_KEY = 'site-lang';
 
   function setLang(lang) {
     currentLang = lang;
@@ -694,7 +696,21 @@
       const val = el.getAttribute('data-' + lang);
       if (val !== null) el.innerHTML = val;
     });
+    document.title = (lang === 'en')
+      ? 'Pablo A. Lotito — Applied Mathematics'
+      : 'Pablo A. Lotito — Matemática Aplicada';
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
   }
+
+  // Restaurar preferencia persistida (compartida con /cursos/)
+  (function initLang() {
+    let lang = 'es';
+    try {
+      const stored = localStorage.getItem(LANG_KEY);
+      if (stored === 'es' || stored === 'en') lang = stored;
+    } catch (e) {}
+    setLang(lang);
+  })();
 
   // ── CAROUSEL ──
   let currentSlide = 0;
