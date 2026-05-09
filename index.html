@@ -468,55 +468,125 @@
     </a>
   </div>
 
-  <!-- ── GRID ── -->
+ <!-- ── GRID 1── -->
+ <div class="grid">
+
+  <!-- About -->
+  <div class="card full">
+    <div class="card-label" data-es="Sobre mí" data-en="About">Sobre mí</div>
+    <p class="about-text" data-es="Investigador en Matemática Aplicada con más de 25 años de experiencia en optimización, teoría de equilibrio en redes, tráfico y transporte, modelización de sistemas complejos y análisis de datos. Combino fundamentos matemáticos rigurosos con aplicaciones de impacto concreto en transporte urbano, redes de energía, epidemiología y mantenimiento predictivo. Actualmente dirijo el <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (Doctorado en Matemática Computacional e Industrial) y soy Vicepresidente de <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>."
+                          data-en="Applied Mathematics researcher with over 25 years of experience in optimization, network equilibrium theory, traffic and transportation, complex system modeling, and data analysis. I combine rigorous mathematical foundations with concrete-impact applications in urban transport, energy networks, epidemiology, and predictive maintenance. I currently direct <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (PhD in Computational and Industrial Mathematics) and serve as Vice-President of <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>.">
+                    
+      Investigador en Matemática Aplicada con más de 25 años de experiencia en optimización, teoría de equilibrio en redes, tráfico y transporte, modelización de sistemas complejos y análisis de datos. Combino fundamentos matemáticos rigurosos con aplicaciones de impacto concreto en transporte urbano, redes de energía, epidemiología y mantenimiento predictivo. Actualmente dirijo el <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (Doctorado en Matemática Computacional e Industrial) y soy Vicepresidente de <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>.
+    </p>
+  </div>
+
+  <!-- Research areas -->
+  <div class="card">
+    <div class="card-label" data-es="Áreas de investigación" data-en="Research Areas">Áreas de investigación</div>
+    <div class="tags">
+      <span class="tag" data-es="Optimización" data-en="Optimization">Optimización</span>
+      <span class="tag" data-es="Control" data-en="Control">Control</span>
+      <span class="tag" data-es="Análisis Convexo" data-en="Convex Analysis">Análisis Convexo</span>
+      <span class="tag" data-es="Equilibrio en Redes" data-en="Network Equilibrium">Equilibrio en Redes</span>
+      <span class="tag" data-es="Machine Learning" data-en="Machine Learning">Machine Learning</span>
+     
+      <span class="tag" data-es="Optimización para ML" data-en="Optimization in ML">Optimización para ML</span>
+      <span class="tag" data-es="Tráfico y Transporte" data-en="Traffic & Transport">Tráfico y Transporte</span>
+      <span class="tag" data-es="Redes de Energía" data-en="Energy Networks">Redes de Energía</span>
+      <span class="tag" data-es="Modelos Epidemiológicos" data-en="Epidemiological Models">Modelos Epidemiológicos</span>
+      
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="card">
+    <div class="card-label" data-es="En números" data-en="By the numbers">En números</div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">28</div>
+        <div class="stat-label" data-es="Becarios dirigidos" data-en="Research Fellows">Becarios dirigidos</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">11</div>
+        <div class="stat-label" data-es="<a href='https://mathgenealogy.org/id.php?id=92024'>Tesis doctorales dirigidas</a>" data-en="<a href='https://mathgenealogy.org/id.php?id=92024'>PhD Theses</a>"><a href='https://mathgenealogy.org/id.php?id=92024'>Tesis doctorales dirigidas</a></div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">25+</div>
+        <div class="stat-label" data-es="Años de investigación" data-en="Years of research">Años de investigación</div>
+      </div>
+    </div>
+  </div>
+</div><!-- /grid -->
+
+  <!-- ── CAROUSEL ── -->
+  <div class="card" style="margin-top:20px; padding:28px 28px 16px;">
+    <div class="card-label" data-es="Investigación en imágenes" data-en="Research in images">Investigación en imágenes</div>
+    <div class="carousel" id="carousel">
+      <div class="carousel-track" id="carousel-track">
+
+        <div class="carousel-slide">
+          <img src="img/traffic_network.jpg" alt="Redes de flujo de tráfico urbano">
+          <div class="carousel-caption">
+            <strong data-es="Flujo de tráfico urbano" data-en="Urban traffic flow">Flujo de tráfico urbano</strong>
+            <span data-es="Reconstrucción de la demanda de tráfico a partir de observación parcial. 
+            Comparación entre escenarios con y sin sensores (® N.Jares)." 
+            data-en="Traffic demand reconstruction from partial observations. 
+            Comparison across sensor deployment scenarios (® N. Jares).">Reconstrucción de la demanda de tráfico a partir de observación parcial. Comparación entre escenarios con y sin sensores (® N. Jares).</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/public_transport.jpg" alt="Red de transporte público de Tandil">
+          <div class="carousel-caption">
+            <strong data-es="Transporte público — Tandil" data-en="Public transport — Tandil">Transporte público — Tandil</strong>
+            <span data-es="Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021." data-en="Optimization of Tandil's urban public transport system. Agreement between UNCPBA and Municipality of Tandil, 2021.">Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/azul_sim.jpg" alt="Simulación de transporte público — Azul">
+          <div class="carousel-caption">
+            <strong data-es="Transporte público — Azul" data-en="Public transport — Azul">Transporte público — Azul</strong>
+            <span data-es="Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024." data-en="Travel time distributions across optimization scenarios. Final report for the Municipality of Azul, 2024.">Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/geodata.jpg" alt="Estimación de población — Guinea">
+          <div class="carousel-caption">
+            <strong data-es="Datos geoespaciales" data-en="Geospatial data">Datos geoespaciales</strong>
+            <span data-es="Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos." data-en="Population estimation for UNICEF vaccination campaigns in Guinea, using satellite imagery and micro-census data.">Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos.</span>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <img src="img/pvd_sankey.jpg" alt="Sankey — Evolución del DVP por edad">
+          <div class="carousel-caption">
+            <strong data-es="Oftalmología — Evolución del DVP" data-en="Ophthalmology — PVD progression">Oftalmología — Evolución del DVP</strong>
+            <span data-es="Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026." data-en="Sankey diagram of posterior vitreous detachment (PVD) progression across age groups, modelled with Markov chains. Graefe's Archive, 2026.">Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026.</span>
+          </div>
+        </div>
+
+      </div>
+      <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Anterior">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Siguiente">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+      <button class="carousel-dot" onclick="goToSlide(1)"></button>
+      <button class="carousel-dot" onclick="goToSlide(2)"></button>
+      <button class="carousel-dot" onclick="goToSlide(3)"></button>
+      <button class="carousel-dot" onclick="goToSlide(4)"></button>
+    </div>
+  </div>
+
+  <!-- ── GRID 2── -->
   <div class="grid">
-
-    <!-- About -->
-    <div class="card full">
-      <div class="card-label" data-es="Sobre mí" data-en="About">Sobre mí</div>
-      <p class="about-text" data-es="Investigador en Matemática Aplicada con más de 25 años de experiencia en optimización, teoría de equilibrio en redes, tráfico y transporte, modelización de sistemas complejos y análisis de datos. Combino fundamentos matemáticos rigurosos con aplicaciones de impacto concreto en transporte urbano, redes de energía, epidemiología y mantenimiento predictivo. Actualmente dirijo el <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (Doctorado en Matemática Computacional e Industrial) y soy Vicepresidente de <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>."
-                            data-en="Applied Mathematics researcher with over 25 years of experience in optimization, network equilibrium theory, traffic and transportation, complex system modeling, and data analysis. I combine rigorous mathematical foundations with concrete-impact applications in urban transport, energy networks, epidemiology, and predictive maintenance. I currently direct <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (PhD in Computational and Industrial Mathematics) and serve as Vice-President of <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>.">
-                      
-        Investigador en Matemática Aplicada con más de 25 años de experiencia en optimización, teoría de equilibrio en redes, tráfico y transporte, modelización de sistemas complejos y análisis de datos. Combino fundamentos matemáticos rigurosos con aplicaciones de impacto concreto en transporte urbano, redes de energía, epidemiología y mantenimiento predictivo. Actualmente dirijo el <a href='https://exa.unicen.edu.ar/dmci/' target='_blank' rel='noopener'>DMCI</a> (Doctorado en Matemática Computacional e Industrial) y soy Vicepresidente de <a href='https://asamaci.org.ar' target='_blank' rel='noopener'>ASAMACI</a>.
-      </p>
-    </div>
-
-    <!-- Research areas -->
-    <div class="card">
-      <div class="card-label" data-es="Áreas de investigación" data-en="Research Areas">Áreas de investigación</div>
-      <div class="tags">
-        <span class="tag" data-es="Optimización" data-en="Optimization">Optimización</span>
-        <span class="tag" data-es="Control" data-en="Control">Control</span>
-        <span class="tag" data-es="Análisis Convexo" data-en="Convex Analysis">Análisis Convexo</span>
-        <span class="tag" data-es="Equilibrio en Redes" data-en="Network Equilibrium">Equilibrio en Redes</span>
-        <span class="tag" data-es="Machine Learning" data-en="Machine Learning">Machine Learning</span>
-       
-        <span class="tag" data-es="Optimización para ML" data-en="Optimization in ML">Optimización para ML</span>
-        <span class="tag" data-es="Tráfico y Transporte" data-en="Traffic & Transport">Tráfico y Transporte</span>
-        <span class="tag" data-es="Redes de Energía" data-en="Energy Networks">Redes de Energía</span>
-        <span class="tag" data-es="Modelos Epidemiológicos" data-en="Epidemiological Models">Modelos Epidemiológicos</span>
-        
-      </div>
-    </div>
-
-    <!-- Stats -->
-    <div class="card">
-      <div class="card-label" data-es="En números" data-en="By the numbers">En números</div>
-      <div class="stats-row">
-        <div class="stat">
-          <div class="stat-num">28</div>
-          <div class="stat-label" data-es="Becarios dirigidos" data-en="Research Fellows">Becarios dirigidos</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">11</div>
-          <div class="stat-label" data-es="<a href='https://mathgenealogy.org/id.php?id=92024'>Tesis doctorales dirigidas</a>" data-en="<a href='https://mathgenealogy.org/id.php?id=92024'>PhD Theses</a>"><a href='https://mathgenealogy.org/id.php?id=92024'>Tesis doctorales dirigidas</a></div>
-        </div>
-        <div class="stat">
-          <div class="stat-num">25+</div>
-          <div class="stat-label" data-es="Años de investigación" data-en="Years of research">Años de investigación</div>
-        </div>
-      </div>
-    </div>
 
     <!-- Roles -->
     <div class="card full">
@@ -592,71 +662,7 @@
 
   </div><!-- /grid -->
 
-  <!-- ── CAROUSEL ── -->
-  <div class="card" style="margin-top:20px; padding:28px 28px 16px;">
-    <div class="card-label" data-es="Investigación en imágenes" data-en="Research in images">Investigación en imágenes</div>
-    <div class="carousel" id="carousel">
-      <div class="carousel-track" id="carousel-track">
 
-        <div class="carousel-slide">
-          <img src="img/traffic_network.jpg" alt="Redes de flujo de tráfico urbano">
-          <div class="carousel-caption">
-            <strong data-es="Flujo de tráfico urbano" data-en="Urban traffic flow">Flujo de tráfico urbano</strong>
-            <span data-es="Reconstrucción de la demanda de tráfico a partir de observación parcial. 
-            Comparación entre escenarios con y sin sensores (® N.Jares)." 
-            data-en="Traffic demand reconstruction from partial observations. 
-            Comparison across sensor deployment scenarios (® N. Jares).">Reconstrucción de la demanda de tráfico a partir de observación parcial. Comparación entre escenarios con y sin sensores (® N. Jares).</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="img/public_transport.jpg" alt="Red de transporte público de Tandil">
-          <div class="carousel-caption">
-            <strong data-es="Transporte público — Tandil" data-en="Public transport — Tandil">Transporte público — Tandil</strong>
-            <span data-es="Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021." data-en="Optimization of Tandil's urban public transport system. Agreement between UNCPBA and Municipality of Tandil, 2021.">Optimización del sistema de transporte público urbano de Tandil. Convenio UNCPBA–Municipio de Tandil, 2021.</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="img/azul_sim.jpg" alt="Simulación de transporte público — Azul">
-          <div class="carousel-caption">
-            <strong data-es="Transporte público — Azul" data-en="Public transport — Azul">Transporte público — Azul</strong>
-            <span data-es="Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024." data-en="Travel time distributions across optimization scenarios. Final report for the Municipality of Azul, 2024.">Distribución de tiempos de viaje para distintos escenarios de optimización. Informe final para el Municipio de Azul, 2024.</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="img/geodata.jpg" alt="Estimación de población — Guinea">
-          <div class="carousel-caption">
-            <strong data-es="Datos geoespaciales" data-en="Geospatial data">Datos geoespaciales</strong>
-            <span data-es="Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos." data-en="Population estimation for UNICEF vaccination campaigns in Guinea, using satellite imagery and micro-census data.">Estimación de población para campañas de vacunación de UNICEF en Guinea, a partir de imágenes satelitales y microcensos.</span>
-          </div>
-        </div>
-
-        <div class="carousel-slide">
-          <img src="img/pvd_sankey.jpg" alt="Sankey — Evolución del DVP por edad">
-          <div class="carousel-caption">
-            <strong data-es="Oftalmología — Evolución del DVP" data-en="Ophthalmology — PVD progression">Oftalmología — Evolución del DVP</strong>
-            <span data-es="Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026." data-en="Sankey diagram of posterior vitreous detachment (PVD) progression across age groups, modelled with Markov chains. Graefe's Archive, 2026.">Diagrama de flujo de la progresión del desprendimiento vítreo posterior (DVP) por franja etaria, modelado con cadenas de Markov. Graefe's Archive, 2026.</span>
-          </div>
-        </div>
-
-      </div>
-      <button class="carousel-btn prev" onclick="moveCarousel(-1)" aria-label="Anterior">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <button class="carousel-btn next" onclick="moveCarousel(1)" aria-label="Siguiente">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-    <div class="carousel-dots" id="carousel-dots">
-      <button class="carousel-dot active" onclick="goToSlide(0)"></button>
-      <button class="carousel-dot" onclick="goToSlide(1)"></button>
-      <button class="carousel-dot" onclick="goToSlide(2)"></button>
-      <button class="carousel-dot" onclick="goToSlide(3)"></button>
-      <button class="carousel-dot" onclick="goToSlide(4)"></button>
-    </div>
-  </div>
 
   <div class="footer">
     <span data-es="Universidad Nacional del Centro de la Provincia de Buenos Aires · CONICET · Tandil, Argentina"
